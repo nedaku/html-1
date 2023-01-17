@@ -1,46 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Hello App!</h1>
+      <!-- 메뉴 구성하기 -->
+      <p>
+        <router-link to="/intro">Go to Intro</router-link>
+        <router-link to="/home">Go to Home</router-link>
+      </p>
+      <!-- 화면 렌더링 영역 설정 -->
+      <router-view></router-view>
+    </div>
 
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>HTML Example</title>
-  
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/about.css">
-</head>
-<body>
-  <section class="center">
-    <aside class="sidebar"></aside>
-    
-    <section class="contents">
-      <!-- page will be include here -->
-      <section id="page" class="page">
-        <section id="about">
-          <section class="frame">
-            <h2><b>HELLO</b>WORLD</h2>
-            
-            <div class="cat">
-              <div class="picture">
-                <img src="images/mew.png" alt="Mew">
-              </div>
-              <small>Mew</small>
-            </div>
-            <div class="cat">
-              <div class="picture">
-                <img src="images/siesta.png" alt="Siesta">
-              </div>
-              <small>Siesta</small>
-            </div>
-            <div class="cat">
-              <div class="picture">
-                <img src="images/tiger.png" alt="Tiger">
-              </div>
-              <small>Tiger</small>
-            </div>
-          </section>
-        </section>
-      </section>
-    </section>
-  </section>
-</body>
+    <!-- Vue js : Vue Devtools 개발버전 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Vue router js -->
+    <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+    <script>
+      // 1. 라운팅할 페이지에서 사용할 컴포넌트 내용 등록
+      const introComponent = {
+        template: "<h2>집에</h2>",
+      };
+      const homeComponent = {
+        template: "<h2>가고싶어</h2>",
+      };
+      // 2. 라운팅 설정
+      const router = new VueRouter({
+        mode: "history",
+        routes: [
+          {
+            path: "/intro",
+            component: introComponent,
+          },
+          {
+            path: "/home",
+            component: homeComponent,
+          },
+        ],
+      });
+      // 3. 뷰 인스턴스에 라우터 연결
+      new Vue({
+        el: "#app",
+        router,
+      });
+    </script>
+  </body>
 </html>
